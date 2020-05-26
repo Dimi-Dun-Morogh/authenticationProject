@@ -4,6 +4,8 @@ import UI from './config/ui.config';
 import { validate } from './helpers/validate';
 import { showInputError } from './view/form';
 import { removeInputError } from './view/form';
+import { login } from './services/auth.service';
+
 const { form, inputEmail, inputPassword } = UI;
 const inputs = [inputEmail, inputPassword];
 // Events
@@ -18,7 +20,7 @@ inputs.forEach((el) =>
 );
 
 //Handlers
-function onSubmit() {
+async function onSubmit() {
   const isValidForm = inputs.every((el) => {
     const isValidInput = validate(el);
     if (!isValidInput) {
@@ -26,5 +28,18 @@ function onSubmit() {
     }
     return isValidInput;
   });
+  if (!isValidForm) return;
+  try {
+    await login(inputEmail.value, inputPassword.value);
+    //show sucess notify
+    form.reset();
+  } catch (err) {
+    //show error notify
+  }
   console.log(isValidForm);
+
 }
+/*
+login: denis.m.pcspace@gmail.com
+pw: dmgame12345
+*/
