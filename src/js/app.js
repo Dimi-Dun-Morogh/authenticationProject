@@ -5,7 +5,7 @@ import { validate } from './helpers/validate';
 import { showInputError } from './view/form';
 import { removeInputError } from './view/form';
 import { login } from './services/auth.service';
-
+import { notify} from './view/notifications';
 const { form, inputEmail, inputPassword } = UI;
 const inputs = [inputEmail, inputPassword];
 // Events
@@ -32,13 +32,15 @@ async function onSubmit() {
   try {
     await login(inputEmail.value, inputPassword.value);
     //show sucess notify
+    notify({ msg: 'Login success', className: 'alert-success' });
     form.reset();
   } catch (err) {
     //show error notify
+    notify({ msg: 'Login failed', className: 'alert-danger' });
   }
   console.log(isValidForm);
-
 }
+
 /*
 login: denis.m.pcspace@gmail.com
 pw: dmgame12345
