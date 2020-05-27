@@ -6,6 +6,7 @@ import { showInputError } from './view/form';
 import { removeInputError } from './view/form';
 import { login } from './services/auth.service';
 import { notify} from './view/notifications';
+import {getNews} from './services/news.service'
 const { form, inputEmail, inputPassword, correctCredBtn } = UI;
 const inputs = [inputEmail, inputPassword];
 // Events
@@ -41,6 +42,7 @@ async function onSubmit() {
   if (!isValidForm) return;
   try {
     await login(inputEmail.value, inputPassword.value);
+    await getNews()
     //show sucess notify
     notify({ msg: 'Login success', className: 'alert-success' });
     form.reset();
