@@ -6,7 +6,7 @@ import { showInputError } from './view/form';
 import { removeInputError } from './view/form';
 import { login } from './services/auth.service';
 import { notify} from './view/notifications';
-const { form, inputEmail, inputPassword } = UI;
+const { form, inputEmail, inputPassword, correctCredBtn } = UI;
 const inputs = [inputEmail, inputPassword];
 // Events
 
@@ -19,7 +19,17 @@ inputs.forEach((el) =>
   el.addEventListener('focus', () => removeInputError(el)),
 );
 
+correctCredBtn.addEventListener('click',(e)=>{
+  e.preventDefault()
+  correctCredentials();
+})
+
+
 //Handlers
+function correctCredentials(){
+  inputEmail.value = 'denis.m.pcspace@gmail.com';
+  inputPassword.value = 'dmgame12345';
+}
 async function onSubmit() {
   const isValidForm = inputs.every((el) => {
     const isValidInput = validate(el);
