@@ -15,10 +15,21 @@ export async function login(email, password) {
         password,
       }),
     );
-    console.log(response);
-    return response.data;
-  } catch (error) {
+   // console.log(response);
+    return response;
+  } catch (err) {
     console.log(err);
     return Promise.reject(err);
+  }
+}
+
+export async function SignUp(UserData){
+  try {
+    const response = await axios.post('/auth/signup ',JSON.stringify(UserData));
+    console.log(response)
+    return response
+  } catch (err) {
+    console.log(err)
+    return Promise.reject(err)
   }
 }

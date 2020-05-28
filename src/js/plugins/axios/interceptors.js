@@ -1,7 +1,7 @@
 const lsTokenKey = 'my_app_token';
 
 function setTokenOnLogin(res) {
-  console.log(res);
+ // console.log(res);
   const isLoginUrl = res.config.url.includes('login');
   if (isLoginUrl) {
     const token = res.data.token;
@@ -11,11 +11,15 @@ function setTokenOnLogin(res) {
 }
 
 function getClearResponse(res) {
+  // const countryOrCity = res.config.url.includes('countries');
+  // if(countryOrCity){
+  //   return res;
+  // }
   return res.data;
 }
 
 function setToken(req) {
-  console.log(req);
+  //console.log(req);
   const isAuthUrl = req.url.includes('auth');
   if(!isAuthUrl){
     const token = localStorage.getItem(lsTokenKey);
@@ -26,11 +30,13 @@ function setToken(req) {
 }
 function onError(err){
   console.dir(err);
-  return Promise.reject()
+  console.log(err.response.data.message)
+  return err.response.data.message
+  //return Promise.reject()
 }
 
 export default function (axios) {
   axios.interceptors.request.use(setToken);
   axios.interceptors.response.use(setTokenOnLogin);
-  axios.interceptors.response.use(getClearResponse,onError);
+  axios.interceptors.response.use(getClearResponse);
 }

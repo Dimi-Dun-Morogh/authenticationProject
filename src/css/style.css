@@ -1,3 +1,6 @@
+body{
+  background-image: url('../img/bg.jpg');
+}
 .login-page-wrapp {
   height: 100vh;
 }
@@ -17,7 +20,8 @@
 }
 
 .login-greeting-screen {
-  background: var(--teal);
+  /* background: var(--teal); */
+  background-color: rgba(25, 0, 51,0.7);
   width: 50%;
   padding: 20px;
 }
@@ -37,4 +41,28 @@
 
 .login-greeting-screen .login-greeting-screen-description {
   line-height: 1.4;
+}
+.nav-tabs{
+  border-bottom: none;
+}
+
+.form-card {
+  background-color: rgba(25, 0, 51,0.4);
+}
+.login-form-wrap .form-card .card-title{
+  color: #fff;
+}
+label{
+  color: #fff;
+}
+.nav-link{
+ background-color: rgb(163, 163, 194);
+  /* border: 1px solid black; */
+  color:#fff
+}
+.hide {
+  display: none;
+}
+.invalid-feedback{
+  background-color: wheat;
 }

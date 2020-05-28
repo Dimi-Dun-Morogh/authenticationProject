@@ -32,10 +32,23 @@ ${msg}
  * @param {string} settings.className
  *  @param {Number} settings.timeout
  */
+function postLog(msg,clas){
+  const log = document.getElementById('log');
+  const date = new Date();
+  let hours = String(date.getHours()).length==1? "0"+date.getHours() : date.getHours();
+  let minutes = String(date.getMinutes()).length==1? "0"+date.getMinutes() : date.getMinutes();;
+  let seconds = String( date.getSeconds()).length==1? "0"+date.getSeconds() : date.getSeconds();
+  log.classList.remove('hide')
+  const message = `
+  <li class="list-group-item ${clas }">${hours}:${minutes}:${seconds} -  ${msg}</li>
+  `;
+  log.insertAdjacentHTML('beforeend',message)
+}
 export function notify({
   msg = 'Info message',
   className = 'alert-info',
   timeout = 2000,
+  clas=''
 } = {}) {
   if (!getContainer()) {
     createNotifyContainer();
@@ -45,7 +58,7 @@ export function notify({
   const container = getContainer();
 
   container.insertAdjacentHTML('beforeend', template);
-
+  postLog(msg,clas)
   setTimeout(() => closeNotify(index), timeout);
 }
 

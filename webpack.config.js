@@ -1,8 +1,11 @@
 const path = require('path');
+const webpack  = require('webpack')
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+
 
 module.exports = {
   // Итак,  чтобы вебпак начал свою работу, нужно указать главный (основной) файл, который будет включать в себя все другие необходимые файлы (модули).
@@ -79,6 +82,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
+    new webpack.ProvidePlugin({
+      $:'jquery',
+      jQuery:  'jquery',
+      'window.jQuery': 'jquery'
+    })
   ],
   // Кроме entry, мы можем указать поле, куда (в какой файл) собирать конечный результат. Это свойство задаётся с помощью поля output.
   //По умолчанию, весь результирующий код собирается в папку dist.
