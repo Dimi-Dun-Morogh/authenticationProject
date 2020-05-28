@@ -71,6 +71,7 @@ inputs.forEach((el) =>
 );
 
 SignUpBtn.addEventListener('click', (e) => {
+  e.preventDefault()
   onSignUp();
 });
 
